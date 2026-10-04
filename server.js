@@ -5,6 +5,7 @@ import multer from "multer";
 import connectDB from "./config/db.js";
 import fileRoutes from "./routes/fileRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 // __dirname isn't available in ES modules by default — this recreates it
 const __filename = fileURLToPath(import.meta.url);
@@ -24,6 +25,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // Mount the file routes at the root — paths are /upload, /files, /files/:id
 app.use("/", fileRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
 // Catch-all for unmatched routes
 app.use((req, res) => {
